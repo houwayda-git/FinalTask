@@ -9,27 +9,27 @@ import { useNavigate } from 'react-router-dom';
 import Alert from 'react-bootstrap/Alert';
 import moment from "moment";
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-
+import labs from '../Data/labs.json'
+import Doctors from "../Data/Doctors.json"
 
 
 export default function Rdv() {
     const navigate = useNavigate();
+    const uniqueId = () => Math.round(Date.now() * Math.random()).toString();
+
     const [appointment, setAppointment] = useState({
+        uid: uniqueId(),
         type: 'doctor',
         selectedItemId: null,
         time: null
     })
+
     const dispatch = useDispatch()
     const [appointmentType, setAppointmentType] = useState('')
-    const [appointmentUser, setAppointmentUser] = useState('')
     const [alert, setAlert] = useState(false)
     const [selectDoctors, setSelectDoctors] = useState([]);
 
-    const labs = [{ id: "0", name: "Medis", address: { city: "Nabeul" } },
-    { id: "1", name: "SEIF", address: { city: "Slimane" } }]
-
-    useEffect(() => async () => {
+    /*useEffect(() => async () => {
         try {
             const response = await fetch('https://dummyjson.com/users');
             const { users } = await response.json();
@@ -37,7 +37,7 @@ export default function Rdv() {
         } catch (err) {
             console.error(err.message);
         }
-    }, [])
+    }, [])*/
 
     function range(from, to) {
         return ([...Array(to - from + 1).keys()].map(num => num + from))
@@ -55,12 +55,10 @@ export default function Rdv() {
 
     function handleSelect(event) {
         const selectedItemId = event.target.value
-        //console.log(selectedItemId)
         setAppointment({ ...appointment, selectedItemId })
     }
     function handleSubmit() {
         dispatch(add(appointment))
-        // console.log(appointment)
         setAlert(true)
         setAppointment('')
         setAppointmentType('')
@@ -71,7 +69,7 @@ export default function Rdv() {
             <Form className='align-items-center'>
                 <Form.Group className="col-md-5 mx-auto mb-3">
                     {alert && <Alert key="primary" variant="primary">
-                        le RDV est bien enregistré , tu peux consulter ton <a href="/">Profile</a>
+                        le RDV est bien enregistré , tu peux consulter ton <a href="/list">Profile</a>
                     </Alert>}
                 </Form.Group>
                 <Form.Group className="col-md-5 mx-auto mb-5">
@@ -99,8 +97,8 @@ export default function Rdv() {
                         <option>Selectionner un {appointmentType === "doctor" ? 'Medecien' :
                             appointmentType === "lab" ? "Laboratoire" : "choix"}</option>
                         {appointmentType === "doctor"
-                            ? (selectDoctors.map((doctor) => (
-                                <option key={doctor.id} value={doctor.selectedItemId}>{doctor.firstName} {doctor.lastName} - in {doctor.address.city}</option>
+                            ? (Doctors.map((doctor) => (
+                                <option key={doctor.id} value={doctor.id}>{doctor.name} - in {doctor.address.city}</option>
                             )
                             )) : appointmentType === "lab" ? (labs.map((lab) => (
                                 <option key={lab.id} value={lab.id}>{lab.name} - in {lab.address.city}</option>

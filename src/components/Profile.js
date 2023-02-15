@@ -1,36 +1,59 @@
 import React, { useState, useEffect } from 'react';
-import Table from 'react-bootstrap/Table';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Form from 'react-bootstrap/Form';
-import Card from 'react-bootstrap/Card';
 import moment from "moment";
-import { Button } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash, faPen } from '@fortawesome/free-solid-svg-icons'
 import '../App.css'
-import { useDispatch } from 'react-redux'
-import { deleteRdv, update } from '../Redux/rdvSlice'
+import { useSelector, useDispatch } from 'react-redux'
 import CardProfile from './CardProfile';
+import labs from "../Data/labs.json"
+import Doctors from "../Data/Doctors.json"
 
 
 
 
 export default function Profile() {
-    const [listRdv, setListRdv] = useState([])
-    const [count, setCount] = useState(0)
-    const disptach = useDispatch()
+    const [doctors, setDoctors] = useState([])
+    const [loading, setLoading] = useState(true)
+    const rdvList = useSelector(state => state.rdv)
 
-    useEffect(() => {
-        setListRdv(JSON.parse(localStorage.getItem('state')))
-        setCount(JSON.parse(localStorage.getItem('count')))
-    }, [])
-    console.log(listRdv)
+    /* useEffect(() => async () => {
+         try {
+             const response = await fetch('https://dummyjson.com/users');
+             const { users } = await response.json();
+             setDoctors(users)
+             setLoading(false)
+         } catch (err) {
+             console.error(err.message);
+         }
+     }, [])*/
+
+    function getRdv(selectedRdv) {
+        //console.log(selectedRdv)
+        if (selectedRdv.type === 'doctor') {
+            const doctor = Doctors.find(doctor => doctor.id == selectedRdv.selectedItemId)
+            return { uid: selectedRdv.uid, id: doctor.id, name: doctor.name, time: selectedRdv.time, address: doctor.address.city }
+        }
+        if (selectedRdv.type === 'lab') {
+            const lab = labs.find(lab => lab.id === selectedRdv.selectedItemId)
+            return { uid: selectedRdv.uid, id: lab.id, name: lab.name, time: selectedRdv.time, address: lab.address.city }
+        }
+
+    }
+
+
     return (
-        <div className="vh-100">
+        <div className="vh-200">
             <Form className='pt-2'>
                 <div className="container">
-                    {count > 0 ? <>
-                        {listRdv.map((first, i) => <CardProfile profile={first} index={i} key={i} />)}</> : <h3>Pas de rendez vous </h3>}
+                    {Doctors.length > 0 && rdvList.length > 0 ? (<>
+                        {rdvList.map((rdv, i) =>
+                        (<CardProfile
+                            rdv={getRdv(rdv)}
+                            rdvType={rdv.type}
+                            index={rdv.uid} key={i}
+                        />)
+                        )}
+                    </>) : (<>No RDVs</>)}
                 </div>
             </Form >
         </div >

@@ -1,5 +1,5 @@
 import React from 'react'
-import Button from 'react-bootstrap/Button';
+import '../App.css';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
@@ -13,22 +13,22 @@ function MyNavbar() {
     return (
         <Navbar>
             <Container >
-                <Navbar.Brand href="#home">
+                <Navbar.Brand href="/">
                     <img
                         alt=""
-                        src="https://st3.depositphotos.com/4270667/14411/v/450/depositphotos_144112265-stock-illustration-typographic-doctor-logo-design-medical.jpg"
-                        width="280"
-                        height="150"
+                        src="https://tunisie-medicale.com/images/logo.png"
+                        width="210"
+                        height="110"
                         className="d-inline-block align-top"
                     />
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                        <Nav.Link href="/">Espace privée</Nav.Link>
+                        <Nav.Link href="/List">Espace privée</Nav.Link>
                         <Nav.Link href="/rdv">Prise de rendez vous{' '}<Badge bg="danger">{rdvList.length}</Badge></Nav.Link>
                         <Nav.Link href="/labo">Laboratoires</Nav.Link>
-                        <Nav.Link href="/doctor">
+                        <Nav.Link href="/doctors">
                             Medecins
                         </Nav.Link>
                         <Nav.Link href="/Pharma">Pharmacies</Nav.Link>

@@ -9,20 +9,30 @@ export const rdvSlice = createSlice({
     initialState,
     reducers: {
         add: (state, action) => {
-            const newRdv = { name: action.payload }
-            console.log([...state, newRdv])
+            console.log(state)
+            const newRdv = { ...action.payload }
             return [...state, newRdv]
         },
-        deleteRdv: (state, action) => {
-            console.log('deleted')
-        },
-        update: (state, action) => {
-            console.log('update')
+        supRdv: (state, action) => {
+            const index = action.payload
+            const rdvList = state
+            return rdvList.filter((rdv, i) =>
+                rdv.uid != index
+            )
         }
-
+        /*update: (state, action) => {
+            const index = action.payload
+            const rdvList = state
+            return rdvList.map((rdv, i) => {
+                if (rdv.uid === index) {
+                    return { ...rdv, time: 9 }
+                }
+                return rdv
+            })
+        }*/
     }
 })
 
-export const { add, deleteRdv, update } = rdvSlice.actions
+export const { add, supRdv } = rdvSlice.actions
 
 export default rdvSlice.reducer

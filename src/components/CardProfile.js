@@ -3,24 +3,40 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card';
 import moment from "moment";
+import ListGroup from 'react-bootstrap/ListGroup';
+import Button from 'react-bootstrap/Button';
+import { useNavigate } from "react-router-dom"
 import '../App.css'
 import { useDispatch } from 'react-redux'
-import { deleteRdv, update } from '../Redux/rdvSlice'
+import { supRdv, update } from '../Redux/rdvSlice'
+import Badge from 'react-bootstrap/Badge';
+import '../App.css'
 
 
-export default function CardProfile({ profile }, index) {
+
+export default function CardProfile({ rdv, rdvType, index }) {
+    const disptach = useDispatch()
+    const navigate = useNavigate();
+
+
     return (
-        <Form.Group className="mx-auto mb-3">
-            <Card index={index} style={{ width: '15rem' }}>
-                <button type="button" className="btn-close bg-danger" onClick={() => { }} ></button>
-                <Card.Body>
-                    <Card.Title></Card.Title>
-                    <Card.Text>
-                        {/* <span>{profile.name.selectedItemId}</span><br /> */}
-                        {/* <span>{moment().format("DD/MM/YYYY")} à {profile.name.time}h - {profile.name.time + 1}h</span> */}
-                    </Card.Text>
-                    <button type="button" onClick={() => { }} className="btn btn-warning">Modifier</button>
-                </Card.Body>
-            </Card>
-        </Form.Group>)
+        <>
+            <ListGroup as="ol" >
+                <ListGroup.Item
+                    style={{ width: '70rem' }}
+                    index={index}
+                    as="li"
+                    className="justify-content-between align-items-start"
+                >
+                    <div className="ms-2 me-auto">
+                        <div className="fw-bold">{rdvType} {rdv.name}</div>
+                        <span>{moment().format("DD/MM/YYYY")} à {rdv.time}h </span><br />
+                        <span>Adresse : {rdv.address}</span >
+                        <Button onClick={() => disptach(supRdv(index))} className='anybutton' variant="danger">Annuler</Button>
+                    </div>
+
+                </ListGroup.Item>
+            </ListGroup>
+
+        </>)
 }

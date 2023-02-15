@@ -1,34 +1,38 @@
 [
     {
-        "title": "Pharmacie Zeineb SAKOUHI",
-        "address": "6, rue Hadra muût - 1232 BOUDERYES"
+        "id": "0",
+        "name": "Pharmacie Chaouch",
+        "address": {
+            "city": "79, Avenue Hédi Chaker, Tunis 1002  Ariana Ariana Ville"
+        },
+        "category": " Pharmacie de nuit",
+        "img": "https://tunisie-medicale.com/files/pharmacie/default.jpg"
     },
     {
-        "title": "Pharmacie Zeineb SAKOUHI",
-        "address": "6, rue Hadra muût - 1232 BOUDERYES"
+        "id": "1",
+        "name": "Imen Gherab",
+        "address": {
+            "city": "Centre Commercial ARIANA CENTER N°br19 - Avenue Taieb Mhiri, Ariana"
+        },
+        "category": " Pharmacie de jour",
+        "img": "https://tunisie-medicale.com/files/pharmacie/default.jpg"
     },
     {
-        "title": "Pharmacie Zeineb SAKOUHI",
-        "address": "6, rue Hadra muût - 1232 BOUDERYES"
+        "id": "2",
+        "name": "Jebali Mouadh",
+        "address": {
+            "city": "mouadh Ariana Ariana Ville "
+        },
+        "category": " Pharmacie de jour",
+        "img": "https://tunisie-medicale.com/files/pharmacie/default.jpg"
     },
     {
-        "title": "Pharmacie Zeineb SAKOUHI",
-        "address": "6, rue Hadra muût - 1232 BOUDERYES"
-    },
-    {
-        "title": "Pharmacie Zeineb SAKOUHI",
-        "address": "6, rue Hadra muût - 1232 BOUDERYES"
-    },
-    {
-        "title": "Pharmacie Zeineb SAKOUHI",
-        "address": "6, rue Hadra muût - 1232 BOUDERYES"
-    },
-    {
-        "title": "Pharmacie Zeineb SAKOUHI",
-        "address": "6, rue Hadra muût - 1232 BOUDERYES"
-    },
-    {
-        "title": "Pharmacie Zeineb SAKOUHI",
-        "address": "6, rue Hadra muût - 1232 BOUDERYES"
+        "id": "3",
+        "name": "Soussi Sami",
+        "address": {
+            "city": " 34 Rue Mongi Slim,Immeuble Al Ons, Rades, 2040"
+        },
+        "category": " Pharmacie de jour",
+        "img": "https://tunisie-medicale.com/files/pharmacie/default.jpg"
     }
 ]

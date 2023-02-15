@@ -6,6 +6,18 @@
   font-family: 'Poppins', sans-serif;
 }
 
+.team_widget {
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+  width: 200px;
+  background-color: var(--secondary-color);
+  margin: 1rem;
+  border-radius: 5px;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+  justify-content: space-around;
+
+}
 
 .header {
   background-color: var(--secondary-color);
@@ -17,12 +29,16 @@
   margin-bottom: 30px;
 }
 
-
-
-
-
-.search-btn {
+.square {
+  background-color: #e0ffcd;
+  width: 900px;
+  height: 400px;
   display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  margin-left: 15%;
+  color: #0f4392;
 }
 
 .inputText {
@@ -36,11 +52,18 @@
   box-shadow: inset 0 5px 10px var(--secondary-color);
 }
 
+.anybutton {
+  top: 30%;
+  left: 80%;
+  width: 100px;
+  height: 40px;
+  position: absolute;
+  z-index: 2;
+}
+
 .inputText::placeholder {
   color: white;
 }
-
-
 
 .container {
   margin: auto;

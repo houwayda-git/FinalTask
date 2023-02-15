@@ -3,45 +3,36 @@ import { useNavigate } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import Form from 'react-bootstrap/Form';
+import ListGroup from 'react-bootstrap/ListGroup';
 
 
+export default function Doctor(doctor, { name, phone, mail, tarif, category, address }) {
 
-export default function Doctor() {
-    const [doctors, setDoctors] = useState([]);
-    const navigate = useNavigate();
-    useEffect(() => async () => {
-        let response;
-        try {
-            response = await fetch('https://dummyjson.com/users');
-            response = await response.json();
-            setDoctors(response.users)
-        } catch (err) {
-            console.error(err.message);
-        }
-    }, [])
-    return (
+  console.log(doctor);
 
-        <Container className='pt-4'>
-            <div className="vh-100">
-                <Form className='pt-2'>
-                    <div className="container">
-                        {doctors.map((doctor) => <Form.Group className="mx-auto mb-3">
-                            <Card style={{ width: '13rem' }} key={doctor.id}>
-                                <Card.Body>
-                                    <Card.Title>{doctor.firstName} {doctor.lastName}</Card.Title>
-                                    <Card.Text>
-                                        <p>{doctor.email} </p>
-                                        <p>{doctor.phone}</p>
-                                    </Card.Text>
-                                    <Button variant="primary" onClick={() => navigate('/rdv')}>Prendre un Rdv</Button>
-                                </Card.Body>
-                            </Card>
-                        </Form.Group>)}
-                    </div>
-                </Form>
-            </div >
-        </Container >
+  return (
 
-    );
+    <Container className='pt-4'>
+      <Card style={{ width: '18rem' }}>
+        <Card.Img variant="top" src="holder.js/100px180?text=Image cap" />
+        <Card.Body>
+          <Card.Title>{name}</Card.Title>
+          <Card.Text>
+            {category}
+          </Card.Text>
+        </Card.Body>
+        <ListGroup className="list-group-flush">
+          <ListGroup.Item>{phone}</ListGroup.Item>
+          <ListGroup.Item>{mail}</ListGroup.Item>
+          <ListGroup.Item>{address}</ListGroup.Item>
+          <ListGroup.Item>{tarif}</ListGroup.Item>
+        </ListGroup>
+        <Card.Body>
+          <Card.Link href="#">Another Link</Card.Link>
+        </Card.Body>
+      </Card>
+    </Container >
+
+
+  )
 }
